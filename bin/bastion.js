@@ -8,6 +8,7 @@
  
 var program = require('commander');
 var _ = require('lodash');
+var path = require('path');
 var info = require('../package.json');
   
 process.argv = _.map(process.argv, function(arg) {
@@ -24,8 +25,14 @@ program
   .command('new')
   .description('Generates a new bastion project')
   .action(function(){
-     console.log('New'); 
+      
   });
-  
+
+program
+  .command('serve')
+  .description('Runs the local bastion instance')
+  .action(function(){
+      require(path.join(process.cwd(), 'app.js'));
+  });
   
 program.parse(process.argv);
